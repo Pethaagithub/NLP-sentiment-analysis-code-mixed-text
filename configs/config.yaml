@@ -1,0 +1,50 @@
+# Central configuration for the sentiment classification pipeline
+
+seed: 42
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  languages:
+    tamil:
+      labels: ["Positive", "Negative", "Mixed feelings", "Unknown state"]
+    tulu:
+      labels: ["Positive", "Negative", "Mixed", "Neutral", "Not Tulu"]
+
+preprocessing:
+  lowercase_english_only: true      # only lowercase latin-script tokens
+  remove_urls: true
+  remove_mentions: true
+  remove_hashtags_symbol: true      # strips '#' but keeps the word
+  remove_emojis: true
+  collapse_repeated_punctuation: true
+  drop_null_labels: true
+
+embeddings:
+  tfidf:
+    max_features: 20000
+    ngram_range: [1, 2]
+  transformer_models:
+    mbert: "bert-base-multilingual-cased"
+    muril: "google/muril-base-cased"
+    indicbert: "ai4bharat/indic-bert"
+    xlm_roberta: "xlm-roberta-large"
+  max_seq_length: 128
+
+dl_models:
+  embedding_dim: 300
+  hidden_dim: 128
+  num_layers: 1
+  dropout: 0.3
+  batch_size: 32
+  epochs: 10
+  learning_rate: 0.001
+
+transformer_finetuning:
+  batch_size: 16
+  epochs: 10
+  learning_rate: 0.00002
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+
+output_dir: "outputs"

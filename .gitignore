@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.venv/
+
+# Data (not redistributed)
+data/raw/
+data/processed/
+*.csv
+!data/README.md
+
+# Outputs / checkpoints
+outputs/*
+!outputs/.gitkeep
+*.pt
+*.bin
+*.ckpt
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
